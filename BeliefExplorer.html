@@ -229,11 +229,11 @@ function Process(sectionName, previousSectionName, itemChosen)
         var answer = key.replace(/(\$)/g,"");
         var nextSectionName = item.answers[key];
         
-        var onClick = 'Process("'+nextSectionName+'","'+sectionName+'", "'+res+'")';
+        var onClick = 'Process("'+nextSectionName+'","'+sectionName+'", "'+res+'");return false;';
 
         a+="<li>";
         if (Database[nextSectionName]!=undefined)
-            a+="<a href='javascript:;'onclick='"+onClick+"'>"+answer+"</a>";
+            a+="<a href=''onclick='"+onClick+"'>"+answer+"</a>";
         else
             a+="<div>"+answer+"</div>";
         a+="</li>";
