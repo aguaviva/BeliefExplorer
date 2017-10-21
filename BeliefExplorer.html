@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SousVide</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://gitcdn.link/repo/Chalarangelo/mini.css/master/dist/mini-default.min.css">
+
+<script>
+
+var Database = 
+{
+    PickABelief:
+    {
+        question: "Pick a belief that clearly defines who you are, it could be that you believe in a certain religion, or karma, or spirits...",
+        answers:
+        {
+            "done"                               : "WouldChangeOnesMind",
+        }
+    },
+
+    WouldChangeOnesMind :
+    {
+        question: "What would you accept to get you get rid of your belief on <belief>?",
+        answers:
+        {
+            "I would accept evidence"                               : "WouldAcceptEvidence",
+            "I wouldn\'t accept anything, I won\'t change my mind"  : "WontChangeMind",
+        }
+    },
+
+    WontChangeMind :
+    {
+        question: "Could you really go to rest of your life with a belief, and never have a way to realize whether is true?",
+        answers:
+        {
+        }
+    },
+
+    WouldAcceptEvidence :
+    {
+        question: "What belief did you pick?",
+        answers:
+        {
+            "$the Bible$ "  :"HolyBookIsTrue",
+            "$the Quran$"   :"HolyBookIsTrue",
+            "$karma$"       :"karma",
+            "$ghosts$"      :"ghosts"
+        }
+    },
+
+///////////////////////////////////////////////////////////////////////////////////////
+    HolyBookIsTrue :
+    {
+        question: "What made you believe <belief> is true?",
+        answers:
+        {
+            "personal experience"                       : "PersonalExperience",
+            "my family raised me this way"              : "RaisedWithBelief",
+            "Prayers and miracles."                     : "PrayersWork",
+            "I feel better that way."                   : "FeelBetterWithBelief",
+            "If I am wrong I dont lose anything."       : "PascalWager",
+            "It made me be a better person."            : "BetterPerson",
+            "The holy book is consistent with reality." : "HolyBookConsistent",
+            "I just know it."                           : "JustKnowIt",
+            "I have faith."                             : "IHaveFaith",
+        }
+    },
+
+
+    IHaveFaith : 
+    {
+        question: "does just believing in something, make that something true?",
+        answers:
+        {
+            "Yes" : "FaithMakesThingsTrue",
+            "No" : "FaithDoesNotMakeBeliefTrue",
+            "People can believe in whatever they want" : "AllBelievesAreOK",
+        }
+    },
+
+    FeelBetterWithBelief : 
+    {
+        question: "If someone who doesn\'t believe in <belief> told us that they have another belief that makes them feel better, would it make their belief true?",
+        answers:
+        {
+            "that wouldn\'t be reliable" : "FeelBetterWithOtherBeliefNotReliable",
+        }
+    },
+
+    FeelBetterWithOtherBeliefNotReliable : 
+    {
+        question: "If it's not reliable for them, Why was it reliable for yourself?",
+        answers:
+        {
+        }
+    },
+
+    RaisedWithBelief : 
+    {
+        question: "Does him being raised with a particular belief in mind make the belief true?",
+        answers:
+        {
+            "yes" : "RaisedWithBeliefIsTrue",
+        }
+    },
+
+    RaisedWithBeliefIsTrue : 
+    {
+        question: "So being raised to believe that smoking is good, does it makes it true that smoking is actually good?",
+        answers:
+        {
+            "yes" : "ThanksForYourTime",
+            "no" : "RaisedWithBeliefIsTrueNot",
+        }
+    },
+
+    RaisedWithBeliefIsTrueNot : 
+    {
+        question: "Ok, if being raised doesn't make a belief true, what does it make it to be true?",
+        answers:
+        {
+            "next" : "HolyBookIsTrue",
+        }
+    },
+
+    PrayersWork : 
+    {
+        question: "How do you tell the difference between a prayer literally being answered by a god and it just being coincidental, and you lucked out?",
+        answers:
+        {
+            "next" : "HolyBookIsTrue",
+        }
+    },
+
+//////////////////////////////////////////////////////////////////////////////////    
+    karma :     
+    {
+        question: "Is there a chance that someone evil can go the the rest of his life, and never have anything bad happen to him?",
+        answers:
+        {
+            "I think so"                               : "karmaWorksSometimes",
+            "not really"                               : "karmaWorks",
+        }
+    },
+
+    karmaWorksSometimes :
+    {
+        question: "If that happens, what would that would that affect you in any way on the confidence of your belief in karma?",
+        answers:
+        {
+            "I\'d believe less"                        : "done",
+            "not really"                               : "karmaWorks",
+        }
+    },
+    
+    karmaWorks : 
+    {
+        question: "How do you differentiate karmic punishment/reward from things just happening?",
+        answers:
+        {
+            "I can\'t differentiate"                   : "karmaCannotDifferentiate",
+            "not really, if I do it is just because"   : "karmaCanDifferentiate",
+            "the punishment/reward happens just after" : "karmaCanDifferentiateCloseInTime",
+        }
+    },
+    
+    karmaCannotDifferentiate : 
+    {
+        question: "Why believe in karma then if you cannot tell the difference between karma and chance?",
+        answers:
+        {
+            "I have facts"          : "karmaIHaveFacts",
+            "I dont have any facts" : "karmaIDoNotHaveFacts"
+        }
+    },
+
+    karmaIDoNotHaveFacts :
+    {
+        question: "So until you have those facts, what would be a more accurate, a more honest position to be?",
+        answers:
+        {
+        }
+    },
+
+    karmaIHaveFacts :
+    {
+        question: "Awesome, if you have facts we'd definitely like to hear about it!",
+        answers:
+        {
+        }
+    },
+
+    karmaCanDifferentiate :
+    {
+        question: "Do you find yourself doing things in your life that are good so you can get good things in return?",
+        answers:
+        {
+            "not really, if I do it is just because" : "karmaDoGoodNotReally",
+            "yes sometimes"                          : "karma",
+        }
+    },
+
+    karmaDoGoodNotReally :
+    {
+        question: "If you don\'t find yourself on a a regular basis doing good things with the expectation that good things will happen is karma really that important of a role in your life to begin with?",
+        answers:
+        {
+        }
+    },
+}
+
+var variables = {}
+function Process(sectionName, previousSectionName, itemChosen)
+{   
+    variables[sectionName] = itemChosen;
+    item = Database[sectionName];
+ 
+    $("#question").html(item.question.replace(/(<.*>)/, itemChosen))
+    var a="";
+    for(var key in item.answers)
+    {
+        var res = "";
+        var match = key.match(/\$(.*)\$/);
+        if (match!=null && match.length==2)
+            res = match[1]
+                
+        var answer = key.replace(/(\$)/g,"");
+        var nextSectionName = item.answers[key];
+        
+        var onClick = 'Process("'+nextSectionName+'","'+sectionName+'", "'+res+'")';
+        
+        a+="<input type='radio' name='group' value='"+sectionName+"' tabindex='0' ><label onclick='"+onClick+"'>"+answer+"</label><br>";
+    }
+    $("#answers").html(a)
+}
+
+
+
+function Validate(itemName)
+{
+    var orphan = []
+    for(var key1 in Database)
+    {
+        var responses = Database[key1].answers
+        for(var key2 in responses)
+        {
+            var dest = Database[responses[key2]]
+            if (dest==undefined)
+                orphan.push(responses[key2]);
+        }
+    }
+    return orphan;
+}
+
+$(document).ready(function()
+{
+    Validate("PickABelief");
+    Process("PickABelief",undefined,  "");
+})
+
+</script>
+</head>
+<body>
+  <header>
+  <a href="#" class="logo">Belief Explorer</a>
+</header>
+	<div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-lg-offset-4 col-md-5 col-md-offset-4 col-sm-12">
+        <form>
+        <fieldset>
+          <div id="question"></div>
+          <br>
+          <div class="input-group" id="answers"></div>
+          </fieldset>
+      </form>
+    </div>
+    </div>
+  </div>
+
+  <footer>
+  <p>&copy; 2001-2016 Web Corporation | <a href="#">About</a> | <a href="#">Terms of use</a></p>
+</footer>
+</body>
+</html>
+
