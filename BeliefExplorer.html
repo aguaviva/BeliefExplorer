@@ -218,7 +218,7 @@ function Process(sectionName, previousSectionName, itemChosen)
     item = Database[sectionName];
  
     $("#question").html(item.question.replace(/(<.*>)/, itemChosen))
-    var a="";
+    var a="<ul>";
     for(var key in item.answers)
     {
         var res = "";
@@ -230,13 +230,17 @@ function Process(sectionName, previousSectionName, itemChosen)
         var nextSectionName = item.answers[key];
         
         var onClick = 'Process("'+nextSectionName+'","'+sectionName+'", "'+res+'")';
-        
-        a+="<input type='radio' name='group' value='"+sectionName+"' tabindex='0' ><label onclick='"+onClick+"'>"+answer+"</label><br>";
+
+        a+="<li>";
+        if (Database[nextSectionName]!=undefined)
+            a+="<a href='#'onclick='"+onClick+"'>"+answer+"</a>";
+        else
+            a+="<div>"+answer+"</div>";
+        a+="</li>";
     }
+    a+="</ul>";
     $("#answers").html(a)
 }
-
-
 
 function Validate(itemName)
 {
