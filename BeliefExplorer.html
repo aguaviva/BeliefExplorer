@@ -52,10 +52,29 @@ var Database =
     {
         question: "Could you really go to rest of your life with a belief, and never have a way to realize whether is true?",
         answers:
-        {			
+        {
+			"If it is true for me that is what really matters" : "TrueForMe",
         }
     },
 
+    TrueForMe :
+	{
+        question: "If I consider true for me that your car is now mine, would I be right?",
+        answers:
+        {
+			"Yes": "ThankYou",
+			"No!": "WouldAcceptEvidence",
+        }
+	},
+	
+	ThankYou :
+	{
+		question: "Thank you!",
+		answers:
+		{
+		}
+	},
+	
     WouldAcceptEvidence :
     {
         question: "Could a person with a different belief than you still be right?",
@@ -81,17 +100,8 @@ var Database =
 		question: "Are there any limitations? Could I be a surgeon by just believing I am?",
 		answers:
 		{
-			"Yes, everything is in your mind": "PlaceboIsKnowledge",
+			"Yes, everything is in your mind": "TrueForMe",
 		 	"No, just believing is not enough":"OnlyOneBeliefCanBeTrue",
-		}
-	},
-	
-	PlaceboIsKnowledge :
-	{
-		question: "Would you want your family to fly in a plane where the pilot who believes can fly or an properly trained pilot?",
-		answers:
-		{
-			"A properly trained pilot": "TruthDependsOnObserver",
 		}
 	},
 	
@@ -142,10 +152,21 @@ var Database =
         question: "If someone who doesn\'t believe in <belief> told us that they have another belief that makes them feel better, would it make their belief true?",
         answers:
         {
-            "that wouldn\'t be reliable" : "FeelBetterWithOtherBeliefNotReliable",
+            "That wouldn\'t be reliable" : "FeelBetterWithOtherBeliefNotReliable",
+			"Yes it it works for them"   : "BeliefGoodIfMakesYouFeelBetter",
         }
     },
 
+	BeliefGoodIfMakesYouFeelBetter :
+    {
+        question: "If I believe that smoking makes me feel better, does it make it a good belief?",
+        answers:
+        {
+            "yes" : "ThanksForYourTime",
+            "no" : "RaisedWithBeliefIsTrueNot",
+        }
+    },
+	
     FeelBetterWithOtherBeliefNotReliable : 
     {
         question: "If it's not reliable for them, Why was it reliable for yourself?",
