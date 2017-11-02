@@ -16,7 +16,7 @@ var Database =
         question: "Pick a belief that clearly defines who you are, it could be that you believe in a certain religion, or karma, or spirits...",
         answers:
         {
-            "done"                               : "WouldChangeOnesMind",
+            "next"                               : "WouldChangeOnesMind",
         }
     },
 
@@ -30,15 +30,72 @@ var Database =
         }
     },
 
-    WontChangeMind :
+	WontChangeMind :
+	{
+		question:"Do you want to go through life believing in things that are true?",
+        answers:
+        {
+			"yes": "WantTruthButWontAcceptEvidence",			
+			"I don't mind": "DoNotWantTruthAndWontAcceptEvidence",			
+        }
+	},
+	
+	DoNotWantTruthAndWontAcceptEvidence:
+	{
+		question: "Ok, thank you very much for you time",
+        answers:
+        {			
+        }
+	},
+	
+    WantTruthButWontAcceptEvidence :
     {
         question: "Could you really go to rest of your life with a belief, and never have a way to realize whether is true?",
         answers:
-        {
+        {			
         }
     },
 
     WouldAcceptEvidence :
+    {
+        question: "Could a person with a different belief than you still be right?",
+        answers: 
+		{
+			"Only one person could be right" : "OnlyOneBeliefCanBeTrue",
+			"Both persons could be right, truth depends on the observer" : "TruthDependsOnObserver",
+		}
+	},
+	
+	TruthDependsOnObserver :
+	{
+		question: "Is something true regardless of how a person believes it?",
+		answers:
+		{
+			"Yes, for example consider the placebo effect": "PlaceboEffect",
+			"No, you can believe on something and still be wrong": "OnlyOneBeliefCanBeTrue",
+		}
+	},
+	
+	PlaceboEffect :
+	{
+		question: "Are there any limitations? Could I be a surgeon by just believing I am?",
+		answers:
+		{
+			"Yes, everything is in your mind": "PlaceboIsKnowledge",
+		 	"No, just believing is not enough":"OnlyOneBeliefCanBeTrue",
+		}
+	},
+	
+	PlaceboIsKnowledge :
+	{
+		question: "Would you want your family to fly in a plane where the pilot who believes can fly or an properly trained pilot?",
+		answers:
+		{
+			"A properly trained pilot": "TruthDependsOnObserver",
+		}
+	},
+	
+    OnlyOneBeliefCanBeTrue :
     {
         question: "What belief did you pick?",
         answers:
@@ -68,14 +125,14 @@ var Database =
         }
     },
 
-
+	
     IHaveFaith : 
     {
-        question: "does just believing in something, make that something true?",
+        question: "Does just believing in something, make that something true?",
         answers:
         {
             "Yes" : "FaithMakesThingsTrue",
-            "No" : "FaithDoesNotMakeBeliefTrue",
+            "No"  : "FaithDoesNotMakeBeliefTrue",
             "People can believe in whatever they want" : "AllBelievesAreOK",
         }
     },
