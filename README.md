@@ -1,3 +1,3 @@
 # BeliefExplorer
 
-[Explore your beliefs now](http://htmlpreview.github.io/?https://github.com/aguaviva/BeliefExplorer/blob/master/BeliefExplorer.html)
+[Explore your beliefs now](https://aguaviva.github.io/BeliefExplorer/)
